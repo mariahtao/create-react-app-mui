@@ -1,4 +1,4 @@
-# Create React App example
+# Create React App w/ MUI
 
 <!-- #default-branch-switch -->
 
