@@ -1,33 +1,46 @@
-import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import ProTip from './ProTip';
+import * as React from "react";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import AppBar from "./components/AppBar";
+import AddTodo from "./components/AddTodo";
+import Todo from "./components/Todo";
+import "./index.css";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
+    <Typography
+      variant="body1"
+      color="primary.light"
+      align="start"
+      paddingX={2}
+      paddingY={4}
+    >
+      {"© Created with MUI by "}
+      <Link color="secondary" href="https://mariahtao.dev/">
+        @mariahtao.dev
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-export default function App() {
+function App() {
+  const [todos, setTodos] = useState([]);
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App example
-        </Typography>
-        <ProTip />
+        <AppBar />
+        <AddTodo align="start" makeTodos={(text) => setTodos([...todos, text])} />
+        {todos.map((todo, index) => {
+          return <Todo todoNo={index} todo={todo} key={index} />;
+        })}
         <Copyright />
       </Box>
     </Container>
   );
 }
+
+export default App;
